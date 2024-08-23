@@ -1,5 +1,5 @@
 const express = require('express')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const userModel = require('../models/user.model')
@@ -16,7 +16,7 @@ userRouter.get('/', async (req, res) => {
             console.log(`users not found!`);
             return res.status(400).send(`users not found!`)
         }
-        res.set('Custom-Header', 'Task-Response');
+        // res.set('Custom-Header', 'Task-Response');
         console.log(`users  found!`);
         return res.status(200).json(users)
 
