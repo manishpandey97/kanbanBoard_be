@@ -3,7 +3,7 @@ const app = express();
 require('dotenv').config();
 const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 const userConnet = require('./config/users.db');
 const taskConnet = require('./config/tasks.db');
@@ -13,10 +13,16 @@ const authUserTask = require('./middlewares/authUserTask.middleware');
 
 app.use(express.json());
 app.use(cors({origin:"*"}))
+app.use(express.static('public'));
 
 
 app.use('/user', userRouter);
 app.use('/task', authUserTask, taskRouter);
+
+
+app.get('',(req,res)=>{
+    res.status(200).send('server running fine')
+})
 
 app.listen(PORT, async () => {
     try {
